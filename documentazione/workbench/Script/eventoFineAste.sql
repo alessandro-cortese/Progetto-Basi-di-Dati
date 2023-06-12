@@ -37,7 +37,7 @@ begin
 		
         -- aggiorno lo stato dell'oggetto
         update oggetto_in_asta 
-        set tipo = oggetto venduto, prezzo_di_vendita = var_prezzo_di_vendita, 
+        set tipo = oggetto_venduto, prezzo_di_vendita = var_prezzo_di_vendita, 
 			utente = var_cf_utente
 		where codice = var_codice_oggetto;
         
