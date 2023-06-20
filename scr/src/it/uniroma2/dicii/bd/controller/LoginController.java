@@ -6,7 +6,6 @@ import it.uniroma2.dicii.bd.model.domain.Credentials;
 import it.uniroma2.dicii.bd.view.LoginView;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class LoginController implements Controller{
 
@@ -22,7 +21,8 @@ public class LoginController implements Controller{
         }
 
         try {
-            cred = new LoginProcedureDAO().execute(cred.getUsername(), cred.getPassword());
+            LoginProcedureDAO login = LoginProcedureDAO.getInstance();
+            cred = login.execute(cred.getUsername(), cred.getPassword());
         } catch (DAOException e){
             throw new RuntimeException(e);
         }

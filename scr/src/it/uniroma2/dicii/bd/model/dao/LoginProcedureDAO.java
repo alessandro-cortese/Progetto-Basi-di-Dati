@@ -11,6 +11,16 @@ import java.sql.Types;
 
 public class LoginProcedureDAO implements GenericProcedureDAO<Credentials>{
 
+    private static LoginProcedureDAO instance = null;
+    private LoginProcedureDAO(){}
+
+    public static LoginProcedureDAO getInstance(){
+        if(instance == null){
+            instance = new LoginProcedureDAO();
+        }
+        return instance;
+    }
+
     @Override
     public Credentials execute(Object... params) throws DAOException{
 
@@ -32,7 +42,6 @@ public class LoginProcedureDAO implements GenericProcedureDAO<Credentials>{
         }
 
         return new Credentials(username, password, Role.fromInt(role));
-
     }
 
 }
