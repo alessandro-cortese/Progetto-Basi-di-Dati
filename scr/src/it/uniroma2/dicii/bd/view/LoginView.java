@@ -11,6 +11,9 @@ public class LoginView {
     public static Credentials authenticate() throws IOException{
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("");
+        System.out.println("Login");
+        System.out.println("");
         System.out.println("Username: ");
         String username = reader.readLine();
         System.out.println("Password: ");

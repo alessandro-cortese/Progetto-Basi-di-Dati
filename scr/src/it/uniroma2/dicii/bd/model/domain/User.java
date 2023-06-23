@@ -19,6 +19,8 @@ public class User {
     private String username;
     private String password;
 
+    public User(){}
+
     public User(String codiceFiscale, String nome, String cognome,
                 Date dataDiNascita, String cittaDiNascita, String numeroCartaDiCredito,
                 Date dataDiScadenzaCartaDiCredito, String cvv, String viaDiConsegna,
@@ -152,5 +154,18 @@ public class User {
 
     public void setNumeroCivicoDiConsegna(String numeroCivicoDiConsegna) {
         this.numeroCivicoDiConsegna = numeroCivicoDiConsegna;
+    }
+
+    public String toString(){
+
+        System.out.println(this.getCodiceFiscale()+ " " + this.getNome() + " " +
+                this.getCognome() + " " + this.getDataDiNascita() + " " +
+                this.getCittaDiNascita() + " " + this.getNumeroCartaDiCredito() + " " +
+                this.getDataDiScadenzaCartaDiCredito() + " " + this.getCvv() + " " +
+                this.getViaDiConsegna() + " " + this.getComuneDiConsegna() + " " +
+                this.getCapDiConsegna() + " " + this.getUsername() + " " +
+                this.getPassword() + " " + this.getNumeroCivicoDiConsegna());
+
+        return null;
     }
 }
