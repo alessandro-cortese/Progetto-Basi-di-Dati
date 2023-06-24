@@ -1,5 +1,8 @@
 package it.uniroma2.dicii.bd.view;
 
+import it.uniroma2.dicii.bd.model.domain.ListaOggetti;
+import it.uniroma2.dicii.bd.model.utils.TablePrinter;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -30,6 +33,39 @@ public class UtenteHomeScreenView {
         }
 
         return choise;
+    }
+
+    public static void vediAsteAperte(ListaOggetti listaOggetti){
+
+        TablePrinter tablePrinter = new TablePrinter();
+        tablePrinter.setShowVerticalLines(true);
+        if(listaOggetti == null){
+            System.out.println("\nNon è presente nessuna asta aperta in questo momento! ");
+        }else{
+            tablePrinter.setHeaders("Codice", "Descrizione", "Stato", "Descrizione Dimensioni", "Numero Offerte",
+                                    "Data Fine Asta", "Importo della massima offerta", "Categoria");
+            for(int i = 0; i < listaOggetti.getSize(); i++){
+
+                tablePrinter.addRow(listaOggetti.getList().get(i).getCodice(),
+                                    listaOggetti.getList().get(i).getDescrizione(),
+                                    listaOggetti.getList().get(i).getStato(),
+                                    listaOggetti.getList().get(i).getDescrizioneDimensioni(),
+                                    listaOggetti.getList().get(i).getNumeroOfferte().toString(),
+                                    listaOggetti.getList().get(i).getDataFineAsta().toString(),
+                                    listaOggetti.getList().get(i).getOrarioInizioAsta().toString(),
+                                    listaOggetti.getList().get(i).getCategoria().getNome());
+
+            }
+
+            tablePrinter.print();
+
+        }
+
+    }
+
+    public static void exit(){
+        System.out.println("");
+        System.out.println("A presto!");
     }
 
 }

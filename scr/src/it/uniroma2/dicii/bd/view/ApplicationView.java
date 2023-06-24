@@ -3,6 +3,7 @@ package it.uniroma2.dicii.bd.view;
 import java.util.Scanner;
 
 public class ApplicationView {
+
     public static int showApplicationView(){
         System.out.println("ASTE ONLINE");
         System.out.println("");
@@ -23,4 +24,9 @@ public class ApplicationView {
 
         return choice;
     }
+
+    public static void printError(Exception e){
+        System.out.println(e.getMessage());
+    }
+
 }
