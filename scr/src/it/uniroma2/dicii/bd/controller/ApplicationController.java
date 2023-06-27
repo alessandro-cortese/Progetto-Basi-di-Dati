@@ -1,13 +1,16 @@
 package it.uniroma2.dicii.bd.controller;
 
+import it.uniroma2.dicii.bd.model.domain.Administrator;
 import it.uniroma2.dicii.bd.model.domain.Credentials;
 import it.uniroma2.dicii.bd.model.domain.User;
 import it.uniroma2.dicii.bd.view.ApplicationView;
+import it.uniroma2.dicii.bd.view.RegistrationView;
 
 public class ApplicationController implements Controller{
 
     Credentials cred;
     User user;
+    Administrator administrator;
 
     @Override
     public void start() {
@@ -29,10 +32,26 @@ public class ApplicationController implements Controller{
 
     private void registration(){
 
-        RegistrationController registrationController = new RegistrationController();
-        registrationController.start();
-        user = registrationController.getUser();
-        cred = registrationController.getCred();
+        int type;
+        type = RegistrationView.getTypeOfRegistration();
+        if(type == 1){
+
+            UserRegistrationController userRegistrationController = new UserRegistrationController();
+            userRegistrationController.start();
+            user = userRegistrationController.getUser();
+            cred = userRegistrationController.getCred();
+            UtenteController utenteController = new UtenteController();
+            utenteController.start(cred);
+
+        }else{
+
+            AdministratorRegistrationController administratorRegistrationController = new AdministratorRegistrationController();
+            administratorRegistrationController.start();
+            administrator = administratorRegistrationController.getUser();
+            cred = administratorRegistrationController.getCred();
+            AdministratorController administratorController = new AdministratorController();
+            administratorController.start();
+        }
 
 
     }
@@ -49,7 +68,7 @@ public class ApplicationController implements Controller{
 
         switch (cred.getRole()){
             case UTENTE -> new UtenteController().start(cred);
-            case AMMINISTRATORI -> new AmministratoriController().start();
+            case AMMINISTRATORI -> new AdministratorController().start();
             default -> throw new RuntimeException("Invalid Credentials");
         }
 

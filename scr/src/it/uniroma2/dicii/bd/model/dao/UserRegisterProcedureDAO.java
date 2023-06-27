@@ -7,14 +7,14 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class RegisterProcedureDAO implements GenericProcedureDAO<Boolean>{
+public class UserRegisterProcedureDAO implements GenericProcedureDAO<Boolean>{
 
-    private static RegisterProcedureDAO registerDAO = null;
-    private RegisterProcedureDAO(){}
+    private static UserRegisterProcedureDAO registerDAO = null;
+    private UserRegisterProcedureDAO(){}
 
-    public static RegisterProcedureDAO getInstance(){
+    public static UserRegisterProcedureDAO getInstance(){
         if(registerDAO == null){
-            registerDAO = new RegisterProcedureDAO();
+            registerDAO = new UserRegisterProcedureDAO();
         }
         return registerDAO;
     }

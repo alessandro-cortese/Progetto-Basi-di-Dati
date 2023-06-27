@@ -42,17 +42,19 @@ public class UtenteHomeScreenView {
         if(listaOggetti == null){
             System.out.println("\nNon è presente nessuna asta aperta in questo momento! ");
         }else{
-            tablePrinter.setHeaders("Codice", "Descrizione", "Stato", "Descrizione Dimensioni", "Numero Offerte",
-                                    "Data Fine Asta", "Importo della massima offerta", "Categoria");
+            tablePrinter.setHeaders("Codice", "Descrizione", "Stato", "Descrizione Dimensioni", "Prezzo di base",
+                                    "Numero Offerte", "Data Fine Asta", "Orario Fine Asta", "Importo della massima offerta", "Categoria");
             for(int i = 0; i < listaOggetti.getSize(); i++){
 
                 tablePrinter.addRow(listaOggetti.getList().get(i).getCodice(),
                                     listaOggetti.getList().get(i).getDescrizione(),
                                     listaOggetti.getList().get(i).getStato(),
                                     listaOggetti.getList().get(i).getDescrizioneDimensioni(),
+                                    listaOggetti.getList().get(i).getPrezzoDiBase().toString(),
                                     listaOggetti.getList().get(i).getNumeroOfferte().toString(),
                                     listaOggetti.getList().get(i).getDataFineAsta().toString(),
                                     listaOggetti.getList().get(i).getOrarioInizioAsta().toString(),
+                                    listaOggetti.getList().get(i).getValoreMassimaOfferta().toString(),
                                     listaOggetti.getList().get(i).getCategoria().getNome());
 
             }

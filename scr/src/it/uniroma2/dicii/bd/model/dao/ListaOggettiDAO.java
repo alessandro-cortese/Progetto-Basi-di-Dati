@@ -45,13 +45,14 @@ public class ListaOggettiDAO implements GenericProcedureDAO<ListaOggetti>{
                     oggettoInAsta.setDescrizione(resultSet.getString(2));
                     oggettoInAsta.setStato(resultSet.getString(3));
                     oggettoInAsta.setDescrizioneDimensioni(resultSet.getString(4));
-                    oggettoInAsta.setNumeroOfferte(resultSet.getInt(5));
-                    oggettoInAsta.setDataFineAsta(resultSet.getDate(6));
-                    oggettoInAsta.setOrarioInizioAsta(resultSet.getTime(7));
-                    oggettoInAsta.setValoreMassimaOfferta(resultSet.getFloat(8));
+                    oggettoInAsta.setPrezzoDiBase(resultSet.getFloat(5));
+                    oggettoInAsta.setNumeroOfferte(resultSet.getInt(6));
+                    oggettoInAsta.setDataFineAsta(resultSet.getDate(7));
+                    oggettoInAsta.setOrarioInizioAsta(resultSet.getTime(8));
+                    oggettoInAsta.setValoreMassimaOfferta(resultSet.getFloat(9));
                     Categoria categoria = null;
                     CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
-                    categoria = categoriaDAO.execute(resultSet.getString(9));
+                    categoria = categoriaDAO.execute(resultSet.getString(10));
                     oggettoInAsta.setCategoria(categoria);
                     listaOggetti.addOggettoInAsta(oggettoInAsta);
                 }

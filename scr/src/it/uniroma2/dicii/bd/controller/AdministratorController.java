@@ -5,7 +5,7 @@ import it.uniroma2.dicii.bd.model.domain.Role;
 
 import java.sql.SQLException;
 
-public class AmministratoriController implements Controller{
+public class AdministratorController implements Controller{
 
     @Override
     public void start(){
