@@ -4,6 +4,7 @@ import it.uniroma2.dicii.bd.model.domain.ListaOggetti;
 import it.uniroma2.dicii.bd.model.utils.TablePrinter;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class UtenteHomeScreenView {
@@ -24,7 +25,7 @@ public class UtenteHomeScreenView {
 
         while(true){
 
-            System.out.println("Inserisci il codice di cosa vuoi fare: ");
+            System.out.println("Inserisci il codice: ");
             choise = input.nextInt();
             if(choise >= 1 && choise <= 5){
                 break;
@@ -39,29 +40,82 @@ public class UtenteHomeScreenView {
 
         TablePrinter tablePrinter = new TablePrinter();
         tablePrinter.setShowVerticalLines(true);
-        if(listaOggetti == null){
+        if(listaOggetti == null || listaOggetti.getSize() < 1){
             System.out.println("\nNon è presente nessuna asta aperta in questo momento! ");
-        }else{
+        }else {
             tablePrinter.setHeaders("Codice", "Descrizione", "Stato", "Descrizione Dimensioni", "Prezzo di base",
-                                    "Numero Offerte", "Data Fine Asta", "Orario Fine Asta", "Importo della massima offerta", "Categoria");
-            for(int i = 0; i < listaOggetti.getSize(); i++){
+                    "Numero Offerte", "Data Fine Asta", "Orario Fine Asta", "Importo della massima offerta", "Categoria");
 
-                tablePrinter.addRow(listaOggetti.getList().get(i).getCodice(),
-                                    listaOggetti.getList().get(i).getDescrizione(),
-                                    listaOggetti.getList().get(i).getStato(),
-                                    listaOggetti.getList().get(i).getDescrizioneDimensioni(),
-                                    listaOggetti.getList().get(i).getPrezzoDiBase().toString(),
-                                    listaOggetti.getList().get(i).getNumeroOfferte().toString(),
-                                    listaOggetti.getList().get(i).getDataFineAsta().toString(),
-                                    listaOggetti.getList().get(i).getOrarioInizioAsta().toString(),
-                                    listaOggetti.getList().get(i).getValoreMassimaOfferta().toString(),
-                                    listaOggetti.getList().get(i).getCategoria().getNome());
+                for (int i = 0; i < listaOggetti.getSize(); i++) {
+
+                    tablePrinter.addRow(listaOggetti.getList().get(i).getCodice(),
+                            listaOggetti.getList().get(i).getDescrizione(),
+                            listaOggetti.getList().get(i).getStato(),
+                            listaOggetti.getList().get(i).getDescrizioneDimensioni(),
+                            listaOggetti.getList().get(i).getPrezzoDiBase().toString(),
+                            listaOggetti.getList().get(i).getNumeroOfferte().toString(),
+                            listaOggetti.getList().get(i).getDataFineAsta().toString(),
+                            listaOggetti.getList().get(i).getOrarioInizioAsta().toString(),
+                            listaOggetti.getList().get(i).getValoreMassimaOfferta().toString(),
+                            listaOggetti.getList().get(i).getCategoria().getNome());
+
+                }
+                System.out.println("");
+                tablePrinter.print();
 
             }
+        }
 
+
+    public static void vediAsteAperteConOfferte(ListaOggetti listaOggetti){
+
+        TablePrinter tablePrinter = new TablePrinter();
+        tablePrinter.setShowVerticalLines(true);
+        if(listaOggetti == null || listaOggetti.getSize() < 1){
+            System.out.println("\nNon ci sono offerte per aste aperte in questo momento.");
+        }else{
+
+            tablePrinter.setHeaders("Codice Oggetto", "Descrizione", "Stato", "Descrizione Dimensioni",
+                    "Prezzo di Base", "Data Fine Asta", "Ora fine asta", "Valore della massima offerta");
+
+            for(int i = 0; i < listaOggetti.getSize(); i++){
+                tablePrinter.addRow(String.valueOf(listaOggetti.getList().get(i).getCodice()),
+                                    String.valueOf(listaOggetti.getList().get(i).getDescrizione()),
+                                    String.valueOf(listaOggetti.getList().get(i).getStato()),
+                                    String.valueOf(listaOggetti.getList().get(i).getDescrizioneDimensioni()),
+                                    String.valueOf(listaOggetti.getList().get(i).getPrezzoDiBase()),
+                                    String.valueOf(listaOggetti.getList().get(i).getDataFineAsta()),
+                                    String.valueOf(listaOggetti.getList().get(i).getOrarioInizioAsta()),
+                                    String.valueOf(listaOggetti.getList().get(i).getValoreMassimaOfferta())
+                        );
+            }
+            System.out.println("");
             tablePrinter.print();
 
         }
+
+    }
+
+    public static void vediOggettiAcquistati(ListaOggetti listaOggetti){
+        TablePrinter tablePrinter = new TablePrinter();
+        tablePrinter.setShowVerticalLines(true);
+        if(listaOggetti == null || listaOggetti.getSize() < 1){
+            System.out.println("\nNon hai ancora vinto nessuna asta.");
+        }else{
+
+            tablePrinter.setHeaders("Descrizione", "Stato", "Descrizione Dimensioni", "Categoria", "Prezzo di Vendita");
+            for(int i = 0; i < listaOggetti.getSize(); i++){
+
+                tablePrinter.addRow(String.valueOf(listaOggetti.getList().get(i).getDescrizione()),
+                                    String.valueOf(listaOggetti.getList().get(i).getStato()),
+                                    String.valueOf(listaOggetti.getList().get(i).getDescrizioneDimensioni()),
+                                    String.valueOf(listaOggetti.getList().get(i).getCategoria().getNome()),
+                                    String.valueOf(listaOggetti.getList().get(i).getPrezzoDiVendita()));
+            }
+
+        }
+        System.out.println("");
+        tablePrinter.print();
 
     }
 

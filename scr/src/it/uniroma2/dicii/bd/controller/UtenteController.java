@@ -1,9 +1,7 @@
 package it.uniroma2.dicii.bd.controller;
 
 import it.uniroma2.dicii.bd.exception.DAOException;
-import it.uniroma2.dicii.bd.model.dao.ConnectionFactory;
-import it.uniroma2.dicii.bd.model.dao.ListaOggettiDAO;
-import it.uniroma2.dicii.bd.model.dao.UtenteHomeScreenDAO;
+import it.uniroma2.dicii.bd.model.dao.*;
 import it.uniroma2.dicii.bd.model.domain.Credentials;
 import it.uniroma2.dicii.bd.model.domain.ListaOggetti;
 import it.uniroma2.dicii.bd.model.domain.Role;
@@ -49,6 +47,8 @@ public class UtenteController implements ControllerSession{
             switch(scelta){
 
                 case 1 -> vediAste();
+                case 2 -> vediAsteConOfferte();
+                case 4 -> vediOggettiAcquistati();
                 case 5 -> exit();
             }
 
@@ -67,6 +67,47 @@ public class UtenteController implements ControllerSession{
         }
 
         UtenteHomeScreenView.vediAsteAperte(listaOggetti);
+
+    }
+
+    private void vediAsteConOfferte(){
+
+        ListaOggettiInAstaConOfferteProcedureDAO listaOggettiInAstaConOfferteProcedureDAO = ListaOggettiInAstaConOfferteProcedureDAO.getInstance();
+        ListaOggetti listaOggetti = null;
+
+        try{
+
+            listaOggetti = listaOggettiInAstaConOfferteProcedureDAO.execute(user);
+
+        }catch (DAOException e){
+            ApplicationView.printError(e);
+        }
+
+        if(listaOggetti != null){
+            UtenteHomeScreenView.vediAsteAperteConOfferte(listaOggetti);
+        }
+
+    }
+
+    private void vediOggettiAcquistati(){
+
+        ListaOggettiAcquistatiProcedureDAO listaOggettiAcquistatiProcedureDAO = ListaOggettiAcquistatiProcedureDAO.getInstance();
+        ListaOggetti listaOggetti = null;
+
+        try{
+
+            listaOggetti = listaOggettiAcquistatiProcedureDAO.execute(user);
+
+        }catch(DAOException e){
+            ApplicationView.printError(e);
+        }
+
+
+        if(listaOggetti != null){
+
+            UtenteHomeScreenView.vediOggettiAcquistati(listaOggetti);
+
+        }
 
     }
 

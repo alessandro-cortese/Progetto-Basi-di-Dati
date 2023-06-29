@@ -14,7 +14,7 @@ public class ApplicationView {
             System.out.println("1) Registrazione");
             System.out.println("2) Login");
             System.out.println("");
-            System.out.println("Inserisci il codice di cosa vuoi fare: ");
+            System.out.println("Inserisci il codice: ");
             choice = input.nextInt();
             if (choice == 1 || choice == 2){
                 break;
