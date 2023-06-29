@@ -19,7 +19,6 @@ public class UserRegistrationView {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Inserisci un username: ");
         String username = reader.readLine();
-        username = username;
         System.out.println("Inserisci una password: ");
         String password = reader.readLine();
 

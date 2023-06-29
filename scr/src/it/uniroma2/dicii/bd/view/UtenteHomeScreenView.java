@@ -1,9 +1,13 @@
 package it.uniroma2.dicii.bd.view;
 
 import it.uniroma2.dicii.bd.model.domain.ListaOggetti;
+import it.uniroma2.dicii.bd.model.domain.Offerta;
+import it.uniroma2.dicii.bd.model.domain.User;
 import it.uniroma2.dicii.bd.model.utils.TablePrinter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -11,7 +15,7 @@ public class UtenteHomeScreenView {
 
     public static int showHomeScreen() throws IOException {
 
-        int choise = 0;
+        int choise;
         System.out.println("");
         System.out.println("Benvenuto nella tua home screen!");
         System.out.println("Cosa vuoi fare?");
@@ -44,7 +48,8 @@ public class UtenteHomeScreenView {
             System.out.println("\nNon è presente nessuna asta aperta in questo momento! ");
         }else {
             tablePrinter.setHeaders("Codice", "Descrizione", "Stato", "Descrizione Dimensioni", "Prezzo di base",
-                    "Numero Offerte", "Data Fine Asta", "Orario Fine Asta", "Importo della massima offerta", "Categoria");
+                                    "Numero Offerte", "Data Fine Asta", "Orario Fine Asta",
+                                    "Importo della massima offerta", "Categoria");
 
                 for (int i = 0; i < listaOggetti.getSize(); i++) {
 
@@ -76,7 +81,8 @@ public class UtenteHomeScreenView {
         }else{
 
             tablePrinter.setHeaders("Codice Oggetto", "Descrizione", "Stato", "Descrizione Dimensioni",
-                    "Prezzo di Base", "Data Fine Asta", "Ora fine asta", "Valore della massima offerta");
+                                    "Prezzo di Base", "Data Fine Asta", "Ora fine asta",
+                                    "Valore della massima offerta");
 
             for(int i = 0; i < listaOggetti.getSize(); i++){
                 tablePrinter.addRow(String.valueOf(listaOggetti.getList().get(i).getCodice()),
@@ -97,13 +103,16 @@ public class UtenteHomeScreenView {
     }
 
     public static void vediOggettiAcquistati(ListaOggetti listaOggetti){
+
         TablePrinter tablePrinter = new TablePrinter();
         tablePrinter.setShowVerticalLines(true);
         if(listaOggetti == null || listaOggetti.getSize() < 1){
             System.out.println("\nNon hai ancora vinto nessuna asta.");
         }else{
 
-            tablePrinter.setHeaders("Descrizione", "Stato", "Descrizione Dimensioni", "Categoria", "Prezzo di Vendita");
+            tablePrinter.setHeaders("Descrizione", "Stato", "Descrizione Dimensioni", "Categoria",
+                                    "Prezzo di Vendita");
+
             for(int i = 0; i < listaOggetti.getSize(); i++){
 
                 tablePrinter.addRow(String.valueOf(listaOggetti.getList().get(i).getDescrizione()),
@@ -117,6 +126,48 @@ public class UtenteHomeScreenView {
         System.out.println("");
         tablePrinter.print();
 
+    }
+
+    public static Offerta getOffertaInfo(User user) throws IOException{
+
+        Scanner input = new Scanner(System.in);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Offerta offerta = new Offerta();
+        offerta.setUtente(user.getCodiceFiscale());
+
+        int choise;
+
+        System.out.println("");
+        System.out.println("Inserisci il codice dell'oggetto su cui vuoi fare un'offerta: ");
+        offerta.setOggetto(reader.readLine());
+        System.out.println("Inserisci l'importo dell'offerta: ");
+        offerta.setImporto(input.nextFloat());
+        boolean flag = false;
+
+        do{
+            System.out.println("Vuoi impostare la controfferta automatica su questo oggetto?");
+            System.out.println("1) Sì");
+            System.out.println("2) No");
+            choise = input.nextInt();
+
+            if (choise < 1 || choise > 2) {
+                System.out.println("Scelta non valida!");
+                flag = true;
+            }else{
+                flag = false;
+            }
+
+
+        }while(flag);
+
+        if(choise == 1) {
+
+            System.out.println("Insersci il valore dell'importo massimo per la controfferta automatica:");
+            offerta.setValoreMassimoImporto(input.nextFloat());
+
+        }
+
+        return offerta;
     }
 
     public static void exit(){

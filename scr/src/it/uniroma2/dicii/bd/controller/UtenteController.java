@@ -2,10 +2,7 @@ package it.uniroma2.dicii.bd.controller;
 
 import it.uniroma2.dicii.bd.exception.DAOException;
 import it.uniroma2.dicii.bd.model.dao.*;
-import it.uniroma2.dicii.bd.model.domain.Credentials;
-import it.uniroma2.dicii.bd.model.domain.ListaOggetti;
-import it.uniroma2.dicii.bd.model.domain.Role;
-import it.uniroma2.dicii.bd.model.domain.User;
+import it.uniroma2.dicii.bd.model.domain.*;
 import it.uniroma2.dicii.bd.view.ApplicationView;
 import it.uniroma2.dicii.bd.view.UtenteHomeScreenView;
 
@@ -48,8 +45,10 @@ public class UtenteController implements ControllerSession{
 
                 case 1 -> vediAste();
                 case 2 -> vediAsteConOfferte();
+                case 3 -> faiOfferta();
                 case 4 -> vediOggettiAcquistati();
                 case 5 -> exit();
+
             }
 
         }
@@ -85,6 +84,34 @@ public class UtenteController implements ControllerSession{
 
         if(listaOggetti != null){
             UtenteHomeScreenView.vediAsteAperteConOfferte(listaOggetti);
+        }
+
+    }
+
+    private void faiOfferta(){
+
+        boolean flag = false;
+        Offerta offerta = null;
+        try {
+
+            offerta = UtenteHomeScreenView.getOffertaInfo(user);
+
+        } catch (IOException e) {
+            ApplicationView.printError(e);
+        }
+
+        try{
+
+            InsertOfferProcedureDAO insertOfferProcedureDAO = InsertOfferProcedureDAO.getInstance();
+            flag = insertOfferProcedureDAO.execute(offerta);
+
+        }catch (DAOException e){
+            ApplicationView.printError(e);
+        }
+
+        if (flag){
+            System.out.println("");
+            System.out.println("Inserimento dell'offerta avvenuto con successo!");
         }
 
     }
