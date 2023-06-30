@@ -8,7 +8,6 @@ import it.uniroma2.dicii.bd.model.utils.TablePrinter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class UtenteHomeScreenView {
@@ -142,7 +141,7 @@ public class UtenteHomeScreenView {
         offerta.setOggetto(reader.readLine());
         System.out.println("Inserisci l'importo dell'offerta: ");
         offerta.setImporto(input.nextFloat());
-        boolean flag = false;
+        boolean flag;
 
         do{
             System.out.println("Vuoi impostare la controfferta automatica su questo oggetto?");

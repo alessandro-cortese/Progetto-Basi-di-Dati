@@ -3,27 +3,27 @@ package it.uniroma2.dicii.bd.model.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaOggetti {
+public class ListaCategorie {
 
-    List<OggettoInAsta> list = new ArrayList<>();
+    List<Categoria> list = new ArrayList<>();
 
     public int getSize(){
         return list.size();
     }
 
-    public List<OggettoInAsta> getList(){
+    public List<Categoria> getList(){
         return this.list;
     }
 
-    public void addOggettoInAsta(OggettoInAsta oggettoInAsta){
-        this.list.add(oggettoInAsta);
+    public void addOggettoCategoria(Categoria categoria){
+        this.list.add(categoria);
     }
 
     @Override
     public String toString(){
         StringBuilder stringBuilder = new StringBuilder();
-        for(OggettoInAsta oggettoInAsta : list){
-            stringBuilder.append(oggettoInAsta);
+        for(Categoria categoria : list){
+            stringBuilder.append(categoria);
         }
         return stringBuilder.toString();
     }

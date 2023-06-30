@@ -1,6 +1,5 @@
 package it.uniroma2.dicii.bd.model.dao;
 
-import it.uniroma2.dicii.bd.controller.Controller;
 import it.uniroma2.dicii.bd.exception.DAOException;
 import it.uniroma2.dicii.bd.model.domain.Categoria;
 import it.uniroma2.dicii.bd.model.domain.ListaOggetti;
@@ -50,7 +49,7 @@ public class ListaOggettiDAO implements GenericProcedureDAO<ListaOggetti>{
                     oggettoInAsta.setDataFineAsta(resultSet.getDate(7));
                     oggettoInAsta.setOrarioInizioAsta(resultSet.getTime(8));
                     oggettoInAsta.setValoreMassimaOfferta(resultSet.getFloat(9));
-                    Categoria categoria = null;
+                    Categoria categoria;
                     CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
                     categoria = categoriaDAO.execute(resultSet.getString(10));
                     oggettoInAsta.setCategoria(categoria);
