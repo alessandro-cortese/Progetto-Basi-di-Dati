@@ -5,7 +5,6 @@ import it.uniroma2.dicii.bd.model.dao.*;
 import it.uniroma2.dicii.bd.model.domain.*;
 import it.uniroma2.dicii.bd.view.AdministratorHomeView;
 import it.uniroma2.dicii.bd.view.ApplicationView;
-import it.uniroma2.dicii.bd.view.UtenteHomeScreenView;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -44,8 +43,12 @@ public class AdministratorController implements Controller{
                 case 1 -> vediAste();
                 case 2 -> inserisciOggetto();
                 case 3 -> vediCategorie();
-                case 4 -> modificaNomeCategoria();
-                case 8 -> exit();
+                case 4 -> inserisciCategoria();
+                case 5 -> modificaNomeCategoria();
+                case 6 -> modificaMacrocategoria();
+                case 7 -> eliminaMacrocategoria();
+                case 8 -> eliminaCategoria();
+                case 9 -> exit();
 
             }
 
@@ -108,6 +111,36 @@ public class AdministratorController implements Controller{
         AdministratorHomeView.stampaCategorie(listaCategorie);
 
     }
+
+    private void inserisciCategoria(){
+
+        boolean flag = false;
+        Categoria categoria = new Categoria();
+
+        try{
+
+            categoria = AdministratorHomeView.getCategoriaInfo();
+
+        } catch (IOException e) {
+            ApplicationView.printError(e);
+        }
+
+        try {
+
+            InsertCategoryProcedureDAO insertCategoryProcedureDAO = InsertCategoryProcedureDAO.getInstance();
+            flag = insertCategoryProcedureDAO.execute(categoria);
+
+        }catch (DAOException e){
+            ApplicationView.printError(e);
+        }
+
+        if(flag){
+            System.out.println("");
+            System.out.println("Inserimento della categoria avvenuto con successo!");
+        }
+
+    }
+
     private void modificaNomeCategoria(){
 
         List<Object> list = new ArrayList<>();
@@ -115,7 +148,7 @@ public class AdministratorController implements Controller{
 
         try{
 
-            list = AdministratorHomeView.getCategoriaInfo();
+            list = AdministratorHomeView.getCategoriaInfoToModifyName();
 
         }catch (IOException e){
             ApplicationView.printError(e);
@@ -123,8 +156,8 @@ public class AdministratorController implements Controller{
 
         try{
 
-            ModifyNamaOfCategoryProcedureDAO modifyNamaOfCategoryProcedureDAO = ModifyNamaOfCategoryProcedureDAO.getInstance();
-            flag = modifyNamaOfCategoryProcedureDAO.execute(list);
+            ModifyNameOfCategoryProcedureDAO modifyNameOfCategoryProcedureDAO = ModifyNameOfCategoryProcedureDAO.getInstance();
+            flag = modifyNameOfCategoryProcedureDAO.execute(list);
 
         }catch (DAOException e){
             ApplicationView.printError(e);
@@ -132,6 +165,85 @@ public class AdministratorController implements Controller{
 
         if(flag){
             System.out.println("Inserimento avvenuto con successo!");
+        }
+
+    }
+
+    private void modificaMacrocategoria(){
+
+        Categoria categoria = new Categoria();
+        boolean flag = false;
+
+        try {
+            categoria = AdministratorHomeView.getCategoryInfoToModifyMacroCategory();
+        } catch (IOException e) {
+            ApplicationView.printError(e);
+        }
+
+        try {
+
+            ModifyMacroCategoryProcedureDAO modifyMacroCategoryProcedureDAO = ModifyMacroCategoryProcedureDAO.getInstance();
+            flag = modifyMacroCategoryProcedureDAO.execute(categoria);
+
+        }catch (DAOException e){
+            ApplicationView.printError(e);
+        }
+
+        if(flag){
+            System.out.println("");
+            System.out.println("Modifica avvenuta con successo!");
+        }
+
+    }
+
+    private void eliminaMacrocategoria(){
+
+        Categoria categoria = new Categoria();
+        boolean flag = false;
+
+        try{
+            categoria = AdministratorHomeView.getCategoryInfoToDeleteMacroCategory();
+        } catch (IOException e) {
+            ApplicationView.printError(e);
+        }
+
+        try{
+
+            DeleteMacroCategotyProcedureDAO deleteMacroCategotyProcedureDAO = DeleteMacroCategotyProcedureDAO.getInstance();
+            flag = deleteMacroCategotyProcedureDAO.execute(categoria);
+
+        }catch (DAOException e){
+            ApplicationView.printError(e);
+        }
+
+        if(flag){
+            System.out.println("");
+            System.out.println("Modifica avvenuta con successo!");
+        }
+
+    }
+
+    private void eliminaCategoria(){
+
+        Categoria categoria = new Categoria();
+        boolean flag = false;
+
+        try{
+            categoria = AdministratorHomeView.getCategoryInfoToDelete();
+        } catch (IOException e) {
+            ApplicationView.printError(e);
+        }
+
+        try{
+            DeleteCategoryProcedureDAO deleteCategoryProcedureDAO = DeleteCategoryProcedureDAO.getInstance();
+            flag = deleteCategoryProcedureDAO.execute(categoria);
+        }catch (DAOException e){
+            ApplicationView.printError(e);
+        }
+
+        if(flag){
+            System.out.println("");
+            System.out.println("Eliminazione avvenuta con successo!");
         }
 
     }

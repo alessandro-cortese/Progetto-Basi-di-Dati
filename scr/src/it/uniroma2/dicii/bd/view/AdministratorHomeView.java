@@ -24,11 +24,12 @@ public class AdministratorHomeView {
         System.out.println("1) Visaulizza aste aperte");
         System.out.println("2) Inserisci un oggetto da mettere in asta");
         System.out.println("3) Visualizza le categorie");
-        System.out.println("4) Modifica il nome di una categoria");
-        System.out.println("5) Modifica la macrocategoria di una categoria");
-        System.out.println("6) Elimina una macrocategoria da una categoria");
-        System.out.println("7) Elimina una categoria");
-        System.out.println("8) Esci");
+        System.out.println("4) Inserisci una categoria");
+        System.out.println("5) Modifica il nome di una categoria");
+        System.out.println("6) Modifica la macrocategoria di una categoria");
+        System.out.println("7) Elimina una macrocategoria da una categoria");
+        System.out.println("8) Elimina una categoria");
+        System.out.println("9) Esci");
         System.out.println("");
         Scanner input = new Scanner(System.in);
 
@@ -36,7 +37,7 @@ public class AdministratorHomeView {
 
             System.out.println("Inserisci il codice: ");
             choise = input.nextInt();
-            if(choise >= 1 && choise <= 8){
+            if(choise >= 1 && choise <= 9){
                 break;
             }
             System.out.println("Codice non valido");
@@ -101,7 +102,78 @@ public class AdministratorHomeView {
         return oggettoInAsta;
     }
 
-    public static List<Object> getCategoriaInfo() throws IOException{
+    public static Categoria getCategoriaInfo() throws IOException{
+
+        Categoria categoria = new Categoria();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        Scanner input = new Scanner(System.in);
+        boolean flag = false;
+        int choise;
+
+        System.out.println("");
+        System.out.println("Inserisci il nome della nuova categoria: ");
+        categoria.setNome(reader.readLine());
+        System.out.println("La categoria ha una macrocategoria?");
+        System.out.println("1) Sì");
+        System.out.println("2) No");
+        do{
+
+            System.out.println("Inserisci il codice: ");
+            choise = input.nextInt();
+            if(choise < 1 || choise > 2){
+                flag = true;
+                System.out.println("Codice non corretto:");
+            }else{
+                flag = false;
+            }
+
+        }while (flag);
+
+        if(choise == 1){
+            System.out.println("Inserisci la macrocategoria: ");
+            categoria.setMacrocategoria(reader.readLine());
+        }
+
+        return categoria;
+    }
+
+    public static Categoria getCategoryInfoToDeleteMacroCategory() throws IOException{
+
+        Categoria categoria = new Categoria();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("");
+        System.out.println("Inserisci il nome della categoria di cui vuoi eliminare la macrocategoria: ");
+        categoria.setNome(reader.readLine());
+
+        return categoria;
+    }
+
+    public static Categoria getCategoryInfoToDelete() throws IOException{
+
+        Categoria categoria = new Categoria();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("");
+        System.out.println("Inserisci il nome della categoria che vuoi eliminare: ");
+        categoria.setNome(reader.readLine());
+
+        return categoria;
+    }
+
+    public static Categoria getCategoryInfoToModifyMacroCategory() throws IOException{
+        Categoria categoria = new Categoria();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        System.out.println("Inserisici il nome della categoria di cui cambiare la macrocategoria: ");
+        categoria.setNome(reader.readLine());
+        System.out.println("Inserisci la macrocategoria da modificare: ");
+        categoria.setMacrocategoria(reader.readLine());
+
+        return categoria;
+    }
+
+    public static List<Object> getCategoriaInfoToModifyName() throws IOException{
 
         List<Object> list = new ArrayList<>();
         String nuovoNome;

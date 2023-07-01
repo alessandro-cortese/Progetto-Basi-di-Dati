@@ -8,15 +8,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ModifyNamaOfCategoryProcedureDAO implements GenericProcedureDAO <Boolean>{
+public class ModifyNameOfCategoryProcedureDAO implements GenericProcedureDAO <Boolean>{
 
-    private static ModifyNamaOfCategoryProcedureDAO instance = null;
+    private static ModifyNameOfCategoryProcedureDAO instance = null;
 
-    private ModifyNamaOfCategoryProcedureDAO(){}
+    private ModifyNameOfCategoryProcedureDAO(){}
 
-    public static ModifyNamaOfCategoryProcedureDAO getInstance(){
+    public static ModifyNameOfCategoryProcedureDAO getInstance(){
         if(instance == null){
-            instance = new ModifyNamaOfCategoryProcedureDAO();
+            instance = new ModifyNameOfCategoryProcedureDAO();
         }
 
         return instance;
