@@ -68,7 +68,7 @@ public class AdministratorHomeView {
                         listaOggetti.getList().get(i).getDataFineAsta().toString(),
                         listaOggetti.getList().get(i).getOrarioInizioAsta().toString(),
                         listaOggetti.getList().get(i).getValoreMassimaOfferta().toString(),
-                        listaOggetti.getList().get(i).getCategoria().getNome());
+                        listaOggetti.getList().get(i).getCategoria());
 
             }
             System.out.println("");
@@ -82,7 +82,6 @@ public class AdministratorHomeView {
         Scanner input = new Scanner(System.in);
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         OggettoInAsta oggettoInAsta = new OggettoInAsta();
-        Categoria categoria = new Categoria();
 
         System.out.println("");
         System.out.println("Inserisci la descrizione dell'oggetto da mettere in asta: ");
@@ -96,8 +95,7 @@ public class AdministratorHomeView {
         System.out.println("Inserisci la durata dell'asta: (la durata indica i giorni che deve durata l'asta)");
         oggettoInAsta.setDurataAsta(input.nextInt());
         System.out.println("Inserisci la categoria dell'oggetto da mettere in asta: ");
-        categoria.setNome(reader.readLine());
-        oggettoInAsta.setCategoria(categoria);
+        oggettoInAsta.setCategoria(reader.readLine());
 
         return oggettoInAsta;
     }

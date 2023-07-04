@@ -15,7 +15,7 @@ public class OggettoInAsta {
     private Date dataInizioAsta;
     private Date dataFineAsta;
     private Time orarioInizioAsta;
-    private Categoria categoria;
+    private String categoria;
     private Float prezzoDiVendita;
     private User proprietario;
     private Integer durataAsta;
@@ -25,7 +25,7 @@ public class OggettoInAsta {
 
     public OggettoInAsta(String codice, String descrizione, String stato, Float prezzoDiBase,
                          String descrizioneDimensioni, String tipoOggetto, Integer numeroOfferte,
-                         Date dataInizioAsta, Date dataFineAsta, Time orarioInizioAsta, Categoria categoria,
+                         Date dataInizioAsta, Date dataFineAsta, Time orarioInizioAsta, String categoria,
                          Float prezzoDiVendita, User proprietario, Integer durataAsta, Float valoreMassimaOfferta){
 
         this.codice = codice;
@@ -126,11 +126,11 @@ public class OggettoInAsta {
         this.orarioInizioAsta = orarioInizioAsta;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

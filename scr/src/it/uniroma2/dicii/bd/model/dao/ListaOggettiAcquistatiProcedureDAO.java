@@ -44,10 +44,7 @@ public class ListaOggettiAcquistatiProcedureDAO implements GenericProcedureDAO<L
                     oggettoInAsta.setDescrizione(resultSet.getString(1));
                     oggettoInAsta.setStato(resultSet.getString(2));
                     oggettoInAsta.setDescrizioneDimensioni(resultSet.getString(3));
-                    Categoria categoria;
-                    CategoriaDAO categoriaDAO = CategoriaDAO.getInstance();
-                    categoria = categoriaDAO.execute(resultSet.getString(4));
-                    oggettoInAsta.setCategoria(categoria);
+                    oggettoInAsta.setCategoria(resultSet.getString(4));
                     oggettoInAsta.setPrezzoDiVendita(resultSet.getFloat(5));
                     listaOggetti.addOggettoInAsta(oggettoInAsta);
 

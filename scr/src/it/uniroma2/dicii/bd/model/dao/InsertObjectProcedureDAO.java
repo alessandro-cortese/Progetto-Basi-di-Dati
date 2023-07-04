@@ -35,7 +35,7 @@ public class InsertObjectProcedureDAO implements GenericProcedureDAO<Boolean>{
             callableStatement.setFloat(3, oggettoInAsta.getPrezzoDiBase());
             callableStatement.setString(4, oggettoInAsta.getDescrizioneDimensioni());
             callableStatement.setInt(5, oggettoInAsta.getDurataAsta());
-            callableStatement.setString(6, oggettoInAsta.getCategoria().getNome());
+            callableStatement.setString(6, oggettoInAsta.getCategoria());
             callableStatement.execute();
 
         } catch (SQLException sqlException) {

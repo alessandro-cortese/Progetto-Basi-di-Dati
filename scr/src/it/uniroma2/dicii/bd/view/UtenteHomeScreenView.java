@@ -61,7 +61,7 @@ public class UtenteHomeScreenView {
                             listaOggetti.getList().get(i).getDataFineAsta().toString(),
                             listaOggetti.getList().get(i).getOrarioInizioAsta().toString(),
                             listaOggetti.getList().get(i).getValoreMassimaOfferta().toString(),
-                            listaOggetti.getList().get(i).getCategoria().getNome());
+                            listaOggetti.getList().get(i).getCategoria());
 
                 }
                 System.out.println("");
@@ -117,7 +117,7 @@ public class UtenteHomeScreenView {
                 tablePrinter.addRow(String.valueOf(listaOggetti.getList().get(i).getDescrizione()),
                                     String.valueOf(listaOggetti.getList().get(i).getStato()),
                                     String.valueOf(listaOggetti.getList().get(i).getDescrizioneDimensioni()),
-                                    String.valueOf(listaOggetti.getList().get(i).getCategoria().getNome()),
+                                    String.valueOf(listaOggetti.getList().get(i).getCategoria()),
                                     String.valueOf(listaOggetti.getList().get(i).getPrezzoDiVendita()));
             }
 
