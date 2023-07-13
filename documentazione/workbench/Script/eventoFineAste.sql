@@ -26,7 +26,7 @@ begin
     from oggetto_in_asta 
     where current_date() = data_fine_asta and current_time() > orario_inizio_asta
 	and tipo = 'oggetto in asta'
-	limit 1
+	limit 1 -- <-- sbagliato, si deve togliere il limit 1 perché sennò modifica lo stato di un solo oggetto al minuto
     into var_codice_oggetto, var_numero_offerte, var_prezzo_di_vendita;
     
     -- se il numero di offerte è 0 allora l'oggetto non è stato venduto
